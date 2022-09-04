@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dice Game - Mega Assignment - 2</title>
+    <!-- Adding internal css: -->
+    <style>
+        div {
+            margin: auto;
+            text-align: center;
+            width: 18.75rem;
+            height: 19rem;
+            border: 4px solid black;
+            padding: 30px;
+        }
+
+        #dice {
+            font-size: 14rem;
+            cursor: pointer;
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <h2>Click on the dice to roll...</h2>
+        <!-- span where dice will be shown -->
+        <p><span id="dice">⚅</span></p>
+    </div>
+
+    <script>
+        // storing dice emoji in array:
+        const arr = ["⚀", "⚁", "⚂", "⚃", "⚄", "⚅"];
+        // declaring necessary variables:
+        var toggle = false;
+        var interval;
+
+        // creating dice roll function:
+        function diceRoll() {
+            interval = setInterval(function () {
+                var dieNum = Math.floor(Math.random() * 6);
+                document.getElementById('dice').innerHTML = arr[dieNum];
+            }, 100);
+        }
+
+        // calling dice roll function when window loads:
+        window.onload = function () {
+            diceRoll();
+        }
+        // adding click event to roll or stop dice:
+        document.getElementById('dice').addEventListener("click", function () {
+            if (toggle) {
+                diceRoll();
+                toggle = false
+            } else {
+                clearInterval(interval);
+                toggle = true;
+            }
+        });
+    </script>
+</body>
+
+</html>
